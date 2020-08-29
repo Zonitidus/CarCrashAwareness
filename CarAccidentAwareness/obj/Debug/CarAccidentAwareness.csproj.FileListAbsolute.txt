@@ -1,0 +1,10 @@
+C:\Users\zonif\OneDrive\Escritorio\Work\QuintoSemestre\Integrador\Talleres\Taller2\CarAccidentAwareness\CarAccidentAwareness\bin\Debug\CarAccidentAwareness.exe.config
+C:\Users\zonif\OneDrive\Escritorio\Work\QuintoSemestre\Integrador\Talleres\Taller2\CarAccidentAwareness\CarAccidentAwareness\bin\Debug\CarAccidentAwareness.exe
+C:\Users\zonif\OneDrive\Escritorio\Work\QuintoSemestre\Integrador\Talleres\Taller2\CarAccidentAwareness\CarAccidentAwareness\bin\Debug\CarAccidentAwareness.pdb
+C:\Users\zonif\OneDrive\Escritorio\Work\QuintoSemestre\Integrador\Talleres\Taller2\CarAccidentAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.csprojAssemblyReference.cache
+C:\Users\zonif\OneDrive\Escritorio\Work\QuintoSemestre\Integrador\Talleres\Taller2\CarAccidentAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.Properties.Resources.resources
+C:\Users\zonif\OneDrive\Escritorio\Work\QuintoSemestre\Integrador\Talleres\Taller2\CarAccidentAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.csproj.GenerateResource.cache
+C:\Users\zonif\OneDrive\Escritorio\Work\QuintoSemestre\Integrador\Talleres\Taller2\CarAccidentAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.csproj.CoreCompileInputs.cache
+C:\Users\zonif\OneDrive\Escritorio\Work\QuintoSemestre\Integrador\Talleres\Taller2\CarAccidentAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.exe
+C:\Users\zonif\OneDrive\Escritorio\Work\QuintoSemestre\Integrador\Talleres\Taller2\CarAccidentAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.pdb
+C:\Users\zonif\OneDrive\Escritorio\Work\QuintoSemestre\Integrador\Talleres\Taller2\CarAccidentAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.CrashMap.resources
