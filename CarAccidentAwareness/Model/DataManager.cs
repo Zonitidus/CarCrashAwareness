@@ -28,6 +28,7 @@ namespace CarAccidentAwareness.Model
             List<List<String>> temp = new List<List<string>>();
             String line = reader.ReadLine();
             String[] dataItem = line.Split(',');
+            string unionString = "";
             for (int g = 0; g < dataItem.Length; g++)
             {
                 CreateDataTable(dataItem[g]);
@@ -37,9 +38,18 @@ namespace CarAccidentAwareness.Model
                 line = reader.ReadLine();
                 dataItem = line.Split(',');
                 List<String> item = new List<string>();
-                for (int i = 0; i < dataItem.Length; i++)
+                for (int i = 0; i < dataItem.Length - 1; i++)
                 {
-                    item.Add(dataItem[i]);
+                    if (i == 4)
+                    {
+                        unionString = dataItem[i] + dataItem[i + 1];
+                        item.Add(unionString);
+                    }
+                    if (i < 4)
+                    {
+                        item.Add(dataItem[i]);
+                    }
+
                 }
                 temp.Add(item);
             }
