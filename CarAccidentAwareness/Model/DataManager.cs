@@ -52,5 +52,22 @@ namespace CarAccidentAwareness.Model
             column.ColumnName = columnName;
             dt.Columns.Add(column);
         }
+
+
+        public void GetGeoReferences() {
+
+            List<String> locations = new List<string>(); 
+
+            foreach (DataRow dr in dt.Rows){
+
+                String temp = Convert.ToString(dr[(dt.Columns.Count) - 1]);
+
+                locations.Add(temp);
+                Console.WriteLine(temp);
+            }
+
+
+            return ;
+        }
     }
 }

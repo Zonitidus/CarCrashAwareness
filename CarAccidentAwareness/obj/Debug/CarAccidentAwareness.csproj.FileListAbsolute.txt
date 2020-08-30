@@ -8,3 +8,6 @@ C:\Users\zonif\OneDrive\Escritorio\Work\QuintoSemestre\Integrador\Talleres\Talle
 C:\Users\zonif\OneDrive\Escritorio\Work\QuintoSemestre\Integrador\Talleres\Taller2\CarAccidentAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.exe
 C:\Users\zonif\OneDrive\Escritorio\Work\QuintoSemestre\Integrador\Talleres\Taller2\CarAccidentAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.pdb
 C:\Users\zonif\OneDrive\Escritorio\Work\QuintoSemestre\Integrador\Talleres\Taller2\CarAccidentAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.CrashMap.resources
+C:\Users\zonif\OneDrive\Escritorio\Work\QuintoSemestre\Integrador\Talleres\Taller2\CarAccidentAwareness\CarAccidentAwareness\bin\Debug\GMap.NET.Core.dll
+C:\Users\zonif\OneDrive\Escritorio\Work\QuintoSemestre\Integrador\Talleres\Taller2\CarAccidentAwareness\CarAccidentAwareness\bin\Debug\GMap.NET.WindowsForms.dll
+C:\Users\zonif\OneDrive\Escritorio\Work\QuintoSemestre\Integrador\Talleres\Taller2\CarAccidentAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.csproj.CopyComplete
