@@ -8,3 +8,13 @@ C:\Users\zonif\OneDrive\Escritorio\Work\QuintoSemestre\Integrador\Talleres\Talle
 C:\Users\zonif\OneDrive\Escritorio\Work\QuintoSemestre\Integrador\Talleres\Taller2\CarAccidentAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.exe
 C:\Users\zonif\OneDrive\Escritorio\Work\QuintoSemestre\Integrador\Talleres\Taller2\CarAccidentAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.pdb
 C:\Users\zonif\OneDrive\Escritorio\Work\QuintoSemestre\Integrador\Talleres\Taller2\CarAccidentAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.CrashMap.resources
+C:\Users\Felipe\Documents\Personales\ing_sistemas\pi_1\CarCrashAwareness\CarAccidentAwareness\bin\Debug\CarAccidentAwareness.exe.config
+C:\Users\Felipe\Documents\Personales\ing_sistemas\pi_1\CarCrashAwareness\CarAccidentAwareness\bin\Debug\CarAccidentAwareness.exe
+C:\Users\Felipe\Documents\Personales\ing_sistemas\pi_1\CarCrashAwareness\CarAccidentAwareness\bin\Debug\CarAccidentAwareness.pdb
+C:\Users\Felipe\Documents\Personales\ing_sistemas\pi_1\CarCrashAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.csprojAssemblyReference.cache
+C:\Users\Felipe\Documents\Personales\ing_sistemas\pi_1\CarCrashAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.CrashMap.resources
+C:\Users\Felipe\Documents\Personales\ing_sistemas\pi_1\CarCrashAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.Properties.Resources.resources
+C:\Users\Felipe\Documents\Personales\ing_sistemas\pi_1\CarCrashAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.csproj.GenerateResource.cache
+C:\Users\Felipe\Documents\Personales\ing_sistemas\pi_1\CarCrashAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.csproj.CoreCompileInputs.cache
+C:\Users\Felipe\Documents\Personales\ing_sistemas\pi_1\CarCrashAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.exe
+C:\Users\Felipe\Documents\Personales\ing_sistemas\pi_1\CarCrashAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.pdb

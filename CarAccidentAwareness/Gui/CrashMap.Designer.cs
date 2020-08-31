@@ -28,38 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.btnLoadInfo = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // btnLoadInfo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(33, 169);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Filter:";
+            this.btnLoadInfo.Location = new System.Drawing.Point(12, 12);
+            this.btnLoadInfo.Name = "btnLoadInfo";
+            this.btnLoadInfo.Size = new System.Drawing.Size(108, 36);
+            this.btnLoadInfo.TabIndex = 0;
+            this.btnLoadInfo.Text = "Load Information";
+            this.btnLoadInfo.UseVisualStyleBackColor = true;
+            this.btnLoadInfo.Click += new System.EventHandler(this.btnLoadInfo_Click);
             // 
-            // comboBox1
+            // dataGridView1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(36, 203);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 1;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 54);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(724, 409);
+            this.dataGridView1.TabIndex = 1;
             // 
             // CrashMap
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(1408, 494);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.btnLoadInfo);
             this.Name = "CrashMap";
-            this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -67,6 +66,10 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridView dataGridViewTable;
+        private System.Windows.Forms.Button btnLoadInfo;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 
