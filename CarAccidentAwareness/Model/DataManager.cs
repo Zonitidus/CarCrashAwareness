@@ -63,12 +63,25 @@ namespace CarAccidentAwareness.Model
             }
             return temp;
         }
+
         private void CreateDataTable(string columnName)
         {
             DataColumn column = new DataColumn();
             column.DataType = System.Type.GetType("System.String");
             column.ColumnName = columnName;
             dt.Columns.Add(column);
+        }
+
+        public List<string> GeoReferences(DataTable dt)
+        {
+            List<String> geo = new List<string>();
+            foreach (DataRow dr in dt.Rows)
+            {
+
+                String temp = (String)dr["New Georeferenced Column"];
+                geo.Add(temp);
+            }
+            return geo;
         }
     }
 }
