@@ -55,11 +55,14 @@ namespace CarAccidentAwareness
                 {
                     String[] coordenadas = coor.Split(' ');
 
-                    Console.WriteLine(coordenadas[0].Substring(2) + " " + coordenadas[1].Remove(coordenadas[1].Length - 2));
+                    //double lat = Convert.ToDouble(coordenadas[0].Substring(2));
+                    //double lng = Convert.ToDouble(coordenadas[1].Remove(coordenadas[1].Length - 2));
 
-                    double lat = Convert.ToDouble(coordenadas[0].Substring(2));
-                    double lng = Convert.ToDouble(coordenadas[1].Remove(coordenadas[1].Length - 2));
+                    double lat = double.Parse(coordenadas[0].Substring(2), System.Globalization.CultureInfo.InvariantCulture);
+                    double lng = double.Parse(coordenadas[1].Remove(coordenadas[1].Length - 2), System.Globalization.CultureInfo.InvariantCulture);
 
+
+                    Console.WriteLine("INSIDE MAP: "+lat+","+lng);
 
                     var marker = new GMarkerGoogle(new PointLatLng(lat, lng), GMarkerGoogleType.red);
                     marker.IsVisible = true;
