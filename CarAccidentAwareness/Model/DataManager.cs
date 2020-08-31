@@ -2,15 +2,31 @@
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Data.OleDb;
 
 namespace CarAccidentAwareness.Model
 {
     class DataManager
     {
-        DataTable dt = new DataTable();
+        private StreamReader csvFile;
+        private DataTable dt = new DataTable();
+
+        public DataTable Dt
+        {
+            get { return dt; }
+        }
+
+        public DataManager()
+        {
+            dt = new DataTable();
+        }
+
+
         public DataTable GetDataTable(String path)
         {
+            Console.WriteLine("Entro 1");
             List<List<String>> data = ReadData(path);
+            Console.WriteLine("Entro 1.5");
             for (int i = 0; i < data.Count; i++)
             {
                 DataRow row = dt.NewRow();
@@ -24,10 +40,12 @@ namespace CarAccidentAwareness.Model
                     {
                         Console.WriteLine(i);
                     }
-                    //row[j] = data[i][j];
                 }
                 dt.Rows.Add(row);
             }
+
+            Console.WriteLine("Entro 4");
+            csvFile = new StreamReader(path);
             return dt;
         }
         private List<List<String>> ReadData(String path)
@@ -82,6 +100,69 @@ namespace CarAccidentAwareness.Model
                 geo.Add(temp);
             }
             return geo;
+        }
+
+        public DataTable ReadCsv(string fileName)
+        {
+            DataTable dt = new DataTable("Data");
+            using (OleDbConnection cn = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=\"" +
+                Path.GetDirectoryName(fileName) + "\";Extended Properties='text;HDR=yes;FMT=Delimited(,)';"))
+            {
+                using (OleDbCommand cmd = new OleDbCommand(string.Format("select *from[{0}]", new FileInfo(fileName).Name), cn))
+                {
+                    cn.Open();
+                    using (OleDbDataAdapter adapter = new OleDbDataAdapter(cmd))
+                    {
+                        adapter.Fill(dt);
+                    }
+                }
+
+            }
+            csvFile = new StreamReader(fileName);
+            return dt;
+        }
+
+        public Dictionary<string, string> loadFieldsToFilter()
+        {
+            Dictionary<string, string> dictFieldsFilter = new Dictionary<string, string>();
+
+            using (var rd = csvFile)
+            {
+                int i = 0;
+                while (!rd.EndOfStream && i == 0)
+                {
+                    var splitsFields = rd.ReadLine().Split(',');
+                    foreach (string fieldName in splitsFields)
+                    {
+                        Console.WriteLine(AssingClasificationToField(fieldName));
+                        dictFieldsFilter.Add(fieldName, AssingClasificationToField(fieldName));
+                    }
+                    i++;
+                }
+
+            }
+            return dictFieldsFilter;
+        }
+
+        private string AssingClasificationToField(String nameField)
+        {
+
+            switch (nameField)
+            {
+                case "CC Number":
+                    return "string";
+                case "Date":
+                    return "string";
+                case "Time":
+                    return "string";
+                case "Accident Type":
+                    return "categorical";
+                case "New Georeferenced Column":
+                    return "string";
+                default:
+                    return "default";
+            }
+
         }
     }
 }

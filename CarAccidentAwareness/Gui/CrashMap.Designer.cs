@@ -29,26 +29,32 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxSelFilter = new System.Windows.Forms.ComboBox();
             this.map = new GMap.NET.WindowsForms.GMapControl();
+            this.btnLoadInfo = new System.Windows.Forms.Button();
+            this.dataGridInfoLoaded = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridInfoLoaded)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(33, 169);
+            this.label1.Location = new System.Drawing.Point(292, 9);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 17);
+            this.label1.Size = new System.Drawing.Size(32, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Filter:";
             // 
-            // comboBox1
+            // comboBoxSelFilter
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(36, 203);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 1;
+            this.comboBoxSelFilter.FormattingEnabled = true;
+            this.comboBoxSelFilter.Location = new System.Drawing.Point(295, 26);
+            this.comboBoxSelFilter.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBoxSelFilter.Name = "comboBoxSelFilter";
+            this.comboBoxSelFilter.Size = new System.Drawing.Size(224, 21);
+            this.comboBoxSelFilter.TabIndex = 1;
+            this.comboBoxSelFilter.SelectedIndexChanged += new System.EventHandler(this.comboBoxSelFilter_SelectedIndexChanged);
             // 
             // map
             // 
@@ -58,7 +64,8 @@
             this.map.GrayScaleMode = false;
             this.map.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.map.LevelsKeepInMemmory = 5;
-            this.map.Location = new System.Drawing.Point(220, 12);
+            this.map.Location = new System.Drawing.Point(544, 95);
+            this.map.Margin = new System.Windows.Forms.Padding(2);
             this.map.MarkersEnabled = true;
             this.map.MaxZoom = 2;
             this.map.MinZoom = 2;
@@ -72,21 +79,43 @@
             this.map.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.map.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.map.ShowTileGridLines = false;
-            this.map.Size = new System.Drawing.Size(568, 411);
+            this.map.Size = new System.Drawing.Size(497, 334);
             this.map.TabIndex = 2;
             this.map.Zoom = 0D;
             this.map.Load += new System.EventHandler(this.map_Load);
             // 
+            // btnLoadInfo
+            // 
+            this.btnLoadInfo.Location = new System.Drawing.Point(12, 15);
+            this.btnLoadInfo.Name = "btnLoadInfo";
+            this.btnLoadInfo.Size = new System.Drawing.Size(198, 41);
+            this.btnLoadInfo.TabIndex = 3;
+            this.btnLoadInfo.Text = "Load Info";
+            this.btnLoadInfo.UseVisualStyleBackColor = true;
+            this.btnLoadInfo.Click += new System.EventHandler(this.btnLoadInfo_Click_1);
+            // 
+            // dataGridInfoLoaded
+            // 
+            this.dataGridInfoLoaded.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridInfoLoaded.Location = new System.Drawing.Point(12, 95);
+            this.dataGridInfoLoaded.Name = "dataGridInfoLoaded";
+            this.dataGridInfoLoaded.Size = new System.Drawing.Size(507, 334);
+            this.dataGridInfoLoaded.TabIndex = 4;
+            // 
             // CrashMap
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1052, 568);
+            this.Controls.Add(this.dataGridInfoLoaded);
+            this.Controls.Add(this.btnLoadInfo);
             this.Controls.Add(this.map);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboBoxSelFilter);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CrashMap";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridInfoLoaded)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -95,8 +124,10 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxSelFilter;
         private GMap.NET.WindowsForms.GMapControl map;
+        private System.Windows.Forms.Button btnLoadInfo;
+        private System.Windows.Forms.DataGridView dataGridInfoLoaded;
     }
 }
 

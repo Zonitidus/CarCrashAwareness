@@ -18,19 +18,17 @@ namespace CarAccidentAwareness
 {
     public partial class CrashMap : Form
     {
-        OpenFileDialog ofd;
-        DataManager dm;
-        DataTable dt;
+
+        private DataManager dataManager;
 
         public CrashMap()
         {
-            String path = "Dataset/SMALL.csv";
-            this.dt = dm.GetDataTable(path);
-            this.dm = new DataManager();
-            ofd = new OpenFileDialog();
+            //String path = "../MDTA_Accidents_2.csv";
+            dataManager = new DataManager();
             InitializeComponent();
 
         }
+
 
         private void map_Load(object sender, EventArgs e)
         {
@@ -44,7 +42,7 @@ namespace CarAccidentAwareness
             map.ShowCenter = false;
             map.AutoScroll = true;
 
-            List<String> coords = dm.GeoReferences(this.dt);
+            List<String> coords = dataManager.GeoReferences(dataManager.Dt);
 
             GMapOverlay markerOverlay = new GMapOverlay();
 
@@ -69,5 +67,33 @@ namespace CarAccidentAwareness
 
             map.Overlays.Add(markerOverlay);
         }
+
+        private void btnLoadInfo_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "CSV|*.csv", ValidateNames = true, Multiselect = false })
+                {
+                    if (ofd.ShowDialog() == DialogResult.OK)
+                    {
+                        dataGridInfoLoaded.DataSource = dataManager.GetDataTable(ofd.FileName);
+                        foreach (var itemFieldName in dataManager.loadFieldsToFilter())
+                        {
+                            Console.WriteLine(itemFieldName);
+                            comboBoxSelFilter.Items.Add(itemFieldName.Key);
+                        }
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void comboBoxSelFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
