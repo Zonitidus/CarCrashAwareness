@@ -2,37 +2,61 @@
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Data.OleDb;
 
 namespace CarAccidentAwareness.Model
 {
     class DataManager
     {
+
+        private StreamReader csvFile;
+
         DataTable dt = new DataTable();
         public DataTable GetDataTable(String path)
         {
+            Console.WriteLine("Entro 1");
             List<List<String>> data = ReadData(path);
+            Console.WriteLine("Entro 1.5");
             for (int i = 0; i < data.Count; i++)
             {
                 DataRow row = dt.NewRow();
                 for (int j = 0; j < data[0].Count; j++)
                 {
-                    row[j] = data[i][j];
+                    //row[j] = data[i][j];
+                    try
+                    {
+                        row[j] = data[i][j];
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(i);
+                    }
+
                 }
                 dt.Rows.Add(row);
             }
+
+            Console.WriteLine("Entro 4");
+            csvFile = new StreamReader(path);
             return dt;
         }
         private List<List<String>> ReadData(String path)
         {
+            Console.WriteLine("Entro 1.6");
+            Console.WriteLine(path);
             StreamReader reader = new StreamReader(path);
+            Console.WriteLine("Entro 1.7");
             List<List<String>> temp = new List<List<string>>();
+            Console.WriteLine("Entro 2");
             String line = reader.ReadLine();
             String[] dataItem = line.Split(',');
+            Console.WriteLine("Entro 3");
             string unionString = "";
             for (int g = 0; g < dataItem.Length; g++)
             {
                 CreateDataTable(dataItem[g]);
             }
+
             while (!reader.EndOfStream)
             {
                 line = reader.ReadLine();
@@ -55,12 +79,78 @@ namespace CarAccidentAwareness.Model
             }
             return temp;
         }
+
         private void CreateDataTable(string columnName)
         {
             DataColumn column = new DataColumn();
             column.DataType = System.Type.GetType("System.String");
             column.ColumnName = columnName;
             dt.Columns.Add(column);
+        }
+
+
+
+        public DataTable ReadCsv(string fileName)
+        {
+            DataTable dt = new DataTable("Data");
+            using (OleDbConnection cn = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=\"" +
+                Path.GetDirectoryName(fileName) + "\";Extended Properties='text;HDR=yes;FMT=Delimited(,)';"))
+            {
+                using (OleDbCommand cmd = new OleDbCommand(string.Format("select *from[{0}]", new FileInfo(fileName).Name), cn))
+                {
+                    cn.Open();
+                    using (OleDbDataAdapter adapter = new OleDbDataAdapter(cmd))
+                    {
+                        adapter.Fill(dt);
+                    }
+                }
+
+            }
+            csvFile = new StreamReader(fileName);
+            return dt;
+        }
+
+        public Dictionary<string, string> loadFieldsToFilter()
+        {
+            Dictionary<string, string> dictFieldsFilter = new Dictionary<string, string>();
+
+            using (var rd = csvFile)
+            {
+                int i = 0;
+                while (!rd.EndOfStream && i == 0)
+                {
+                    var splitsFields = rd.ReadLine().Split(',');
+                    foreach (string fieldName in splitsFields)
+                    {
+                        Console.WriteLine(AssingClasificationToField(fieldName));
+                        dictFieldsFilter.Add(fieldName, AssingClasificationToField(fieldName));
+                    }
+                    i++;
+                }
+
+            }
+            return dictFieldsFilter;
+        }
+
+        private string AssingClasificationToField(String nameField)
+        {
+
+            switch (nameField)
+            {
+                case "CC Number":
+                    return "string";
+                case "Date":
+                    return "string";
+                case "Time":
+                    return "string";
+                case "Accident Type":
+                    return "categorical";
+                case "New Georeferenced Column":
+                    return "string";
+                default:
+                    return "default";
+            }
+
         }
     }
 }
