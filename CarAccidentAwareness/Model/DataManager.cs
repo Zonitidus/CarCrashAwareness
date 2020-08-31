@@ -16,7 +16,15 @@ namespace CarAccidentAwareness.Model
                 DataRow row = dt.NewRow();
                 for (int j = 0; j < data[0].Count; j++)
                 {
-                    row[j] = data[i][j];
+                    try
+                    {
+                        row[j] = data[i][j];
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(i);
+                    }
+                    //row[j] = data[i][j];
                 }
                 dt.Rows.Add(row);
             }
