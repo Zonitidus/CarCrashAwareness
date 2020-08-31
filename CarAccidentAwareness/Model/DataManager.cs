@@ -22,7 +22,6 @@ namespace CarAccidentAwareness.Model
                 DataRow row = dt.NewRow();
                 for (int j = 0; j < data[0].Count; j++)
                 {
-                    //row[j] = data[i][j];
                     try
                     {
                         row[j] = data[i][j];
@@ -31,7 +30,6 @@ namespace CarAccidentAwareness.Model
                     {
                         Console.WriteLine(i);
                     }
-
                 }
                 dt.Rows.Add(row);
             }
