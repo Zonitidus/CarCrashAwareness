@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.btnLoadInfo = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.dataGridInfoLoaded = new System.Windows.Forms.DataGridView();
+            this.comboBoxSelFilter = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridInfoLoaded)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLoadInfo
@@ -43,21 +44,30 @@
             this.btnLoadInfo.UseVisualStyleBackColor = true;
             this.btnLoadInfo.Click += new System.EventHandler(this.btnLoadInfo_Click);
             // 
-            // dataGridView1
+            // dataGridInfoLoaded
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 54);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(724, 409);
-            this.dataGridView1.TabIndex = 1;
+            this.dataGridInfoLoaded.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridInfoLoaded.Location = new System.Drawing.Point(12, 54);
+            this.dataGridInfoLoaded.Name = "dataGridInfoLoaded";
+            this.dataGridInfoLoaded.Size = new System.Drawing.Size(588, 409);
+            this.dataGridInfoLoaded.TabIndex = 1;
+            // 
+            // comboBoxSelFilter
+            // 
+            this.comboBoxSelFilter.FormattingEnabled = true;
+            this.comboBoxSelFilter.Location = new System.Drawing.Point(209, 21);
+            this.comboBoxSelFilter.Name = "comboBoxSelFilter";
+            this.comboBoxSelFilter.Size = new System.Drawing.Size(178, 21);
+            this.comboBoxSelFilter.TabIndex = 2;
             // 
             // CrashMap
             // 
-            this.ClientSize = new System.Drawing.Size(1408, 494);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(1162, 494);
+            this.Controls.Add(this.comboBoxSelFilter);
+            this.Controls.Add(this.dataGridInfoLoaded);
             this.Controls.Add(this.btnLoadInfo);
             this.Name = "CrashMap";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridInfoLoaded)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -69,7 +79,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridViewTable;
         private System.Windows.Forms.Button btnLoadInfo;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridInfoLoaded;
+        private System.Windows.Forms.ComboBox comboBoxSelFilter;
     }
 }
 

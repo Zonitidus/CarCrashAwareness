@@ -99,5 +99,47 @@ namespace CarAccidentAwareness.Model
             csvFile = new StreamReader(fileName);
             return dt;
         }
+
+        public Dictionary<string,string> loadFieldsToFilter()
+        {
+            Dictionary<string, string> dictFieldsFilter = new Dictionary<string,string>();
+
+            using (var rd = csvFile)
+            {
+                int i = 0;
+                while (!rd.EndOfStream && i == 0)
+                {
+                    var splitsFields = rd.ReadLine().Split(',');
+                    foreach (string fieldName in splitsFields)
+                    {
+                        Console.WriteLine(AssingClasificationToField(fieldName));
+                        dictFieldsFilter.Add(fieldName, AssingClasificationToField(fieldName));
+                    }
+                    i++;
+                }
+               
+            }
+            return dictFieldsFilter;
+        }
+
+        private string AssingClasificationToField(String nameField) { 
+         
+            switch(nameField)
+            {
+                case "CC Number":
+                    return "string";
+                case "Date":
+                    return "string";
+                case "Time":
+                    return "string";
+                case "Accident Type":
+                    return "categorical";
+                case "New Georeferenced Column":
+                    return "string";
+                default:
+                    return "default";
+            }
+         
+        }
     }
 }

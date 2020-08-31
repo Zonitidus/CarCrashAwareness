@@ -30,7 +30,13 @@ namespace CarAccidentAwareness
                 {
                     if (ofd.ShowDialog() == DialogResult.OK)
                     {
-                        dataGridView1.DataSource = dataManage.ReadCsv(ofd.FileName);
+                        dataGridInfoLoaded.DataSource = dataManage.ReadCsv(ofd.FileName);
+
+                        foreach(var itemFieldName in dataManage.loadFieldsToFilter())
+                        {
+                            comboBoxSelFilter.Items.Add(itemFieldName.Key);
+                        }
+
                     };
                 }
             }
