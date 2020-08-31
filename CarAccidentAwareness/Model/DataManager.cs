@@ -96,8 +96,11 @@ namespace CarAccidentAwareness.Model
             foreach (DataRow dr in dt.Rows)
             {
 
-                String temp = (String)dr["New Georeferenced Column"];
-                geo.Add(temp);
+                Console.WriteLine("GEOOOOO: " + dr.ItemArray[4]);
+                geo.Add(Convert.ToString(dr.ItemArray[4]));
+                //String temp = (String)dr["New Georeferenced Column"];
+                //Console.Write("GEOOOOO: "+temp.ToString());
+                //geo.Add(temp);
             }
             return geo;
         }

@@ -41,6 +41,9 @@ namespace CarAccidentAwareness
             map.Zoom = 12;
             map.ShowCenter = false;
             map.AutoScroll = true;
+        }
+
+        private void UpdateMap() {
 
             List<String> coords = dataManager.GeoReferences(dataManager.Dt);
 
@@ -48,24 +51,31 @@ namespace CarAccidentAwareness
 
             foreach (String coor in coords)
             {
-                String[] coordenadas = coor.Split(' ');
+                try
+                {
+                    String[] coordenadas = coor.Split(' ');
 
-                Console.WriteLine(coordenadas[0].Substring(2) + " " + coordenadas[1].Remove(coordenadas[1].Length - 2));
+                    Console.WriteLine(coordenadas[0].Substring(2) + " " + coordenadas[1].Remove(coordenadas[1].Length - 2));
 
-                double lat = Convert.ToDouble(coordenadas[0].Substring(2));
-                double lng = Convert.ToDouble(coordenadas[1].Remove(coordenadas[1].Length - 2));
+                    double lat = Convert.ToDouble(coordenadas[0].Substring(2));
+                    double lng = Convert.ToDouble(coordenadas[1].Remove(coordenadas[1].Length - 2));
 
 
-                var marker = new GMarkerGoogle(new PointLatLng(lat, lng), GMarkerGoogleType.red);
-                marker.IsVisible = true;
-                markerOverlay.Markers.Add(marker);
+                    var marker = new GMarkerGoogle(new PointLatLng(lat, lng), GMarkerGoogleType.red);
+                    marker.IsVisible = true;
+                    markerOverlay.Markers.Add(marker);
 
-                marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
-                marker.ToolTipText = string.Format("Location: \n Lat: {0} \n Lng: {1}", lat, lng);
+                    marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                    marker.ToolTipText = string.Format("Location: \n Lat: {0} \n Lng: {1}", lat, lng);
+                }
+                catch (Exception e) {
+                    Console.WriteLine(e.Message);
+                }
 
             }
 
             map.Overlays.Add(markerOverlay);
+
         }
 
         private void btnLoadInfo_Click_1(object sender, EventArgs e)
@@ -82,6 +92,7 @@ namespace CarAccidentAwareness
                             Console.WriteLine(itemFieldName);
                             comboBoxSelFilter.Items.Add(itemFieldName.Key);
                         }
+                        UpdateMap();
                     };
                 }
             }
