@@ -61,7 +61,8 @@ namespace CarAccidentAwareness
                     marker.ToolTipText = string.Format("Location: \n Lat: {0} \n Lng: {1}", coor.Lat, coor.Lng);
                 }
                 catch (Exception e) {
-                    Console.WriteLine(e.Message);
+                    
+                    Console.WriteLine(e.StackTrace);
                 }
 
             }
@@ -91,6 +92,7 @@ namespace CarAccidentAwareness
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine(ex.StackTrace);
             }
         }
         private void comboBoxSelFilter_SelectedIndexChanged(object sender, EventArgs e)
