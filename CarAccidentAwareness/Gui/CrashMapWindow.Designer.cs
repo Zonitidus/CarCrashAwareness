@@ -1,6 +1,6 @@
 ﻿namespace CarAccidentAwareness
 {
-    partial class CrashMap
+    partial class CrashMapWindow
     {
         /// <summary>
         /// Variable del diseñador necesaria.

@@ -16,7 +16,7 @@ namespace CarAccidentAwareness
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CrashMap());
+            Application.Run(new CrashMapWindow());
         }
     }
 }

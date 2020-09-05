@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Data.OleDb;
+using GMap.NET;
 
 namespace CarAccidentAwareness.Model
 {
@@ -90,20 +91,80 @@ namespace CarAccidentAwareness.Model
             dt.Columns.Add(column);
         }
 
-        public List<string> GeoReferences(DataTable dt)
+        public List<PointLatLng> GeoReferences(DataTable dt)
         {
-            List<String> geo = new List<string>();
+            List<PointLatLng> geo = new List<PointLatLng>();
             foreach (DataRow dr in dt.Rows)
             {
+                string georeference = Convert.ToString(dr.ItemArray[4]);
+                string[] coord = georeference.Split(',');
+                double lat = double.Parse(coord[0].Substring(2), System.Globalization.CultureInfo.InvariantCulture);
+                double lng = double.Parse(coord[1].Remove(coord[1].Length - 2), System.Globalization.CultureInfo.InvariantCulture);
 
-                Console.WriteLine(dr.ItemArray[4]);
-                geo.Add(Convert.ToString(dr.ItemArray[4]));
-                //String temp = (String)dr["New Georeferenced Column"];
-                //Console.Write("GEOOOOO: "+temp.ToString());
-                //geo.Add(temp);
+                geo.Add(new PointLatLng(lat, lng));
+
             }
             return geo;
         }
+
+        public List<PointLatLng> GeoReferences(DataTable dt, String param, int column)
+        {
+            List<PointLatLng> geo = new List<PointLatLng>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                if (Convert.ToString(dr.ItemArray[column]).Equals(param)) {
+
+                    string georeference = Convert.ToString(dr.ItemArray[4]);
+                    string[] coord = georeference.Split(',');
+                    double lat = double.Parse(coord[0].Substring(2), System.Globalization.CultureInfo.InvariantCulture);
+                    double lng = double.Parse(coord[1].Remove(coord[1].Length - 2), System.Globalization.CultureInfo.InvariantCulture);
+
+                    geo.Add(new PointLatLng(lat, lng));
+                }
+            }
+            return geo;
+        }
+
+        public List<PointLatLng> GeoReferences(DataTable dt, String minDate, String maxDate)
+        {
+            List<PointLatLng> geo = new List<PointLatLng>();
+
+            string[] minDatet = minDate.Split('/');
+            DateTime dateMin = new DateTime(Convert.ToInt32(minDatet[2]), Convert.ToInt32(minDatet[1]), Convert.ToInt32(minDatet[0]));
+
+            string[] maxDatet = maxDate.Split('/');
+            DateTime dateMax = new DateTime(Convert.ToInt32(maxDatet[2]), Convert.ToInt32(maxDatet[1]), Convert.ToInt32(maxDatet[0]));
+
+
+            foreach (DataRow dr in dt.Rows)
+            {
+
+                string[] stringDate = Convert.ToString(dr.ItemArray[1]).Split('/');
+                DateTime date = new DateTime(Convert.ToInt32(stringDate[2]), Convert.ToInt32(stringDate[1]), Convert.ToInt32(stringDate[0]));
+
+
+                if ((dateMin <= date) && (dateMax >= date))
+                {
+
+                    string georeference = Convert.ToString(dr.ItemArray[4]);
+                    string[] coord = georeference.Split(',');
+                    double lat = double.Parse(coord[0].Substring(2), System.Globalization.CultureInfo.InvariantCulture);
+                    double lng = double.Parse(coord[1].Remove(coord[1].Length - 2), System.Globalization.CultureInfo.InvariantCulture);
+
+                    geo.Add(new PointLatLng(lat, lng));
+                }
+            }
+            return geo;
+        }
+
+
+
+
+
+
+
+
+
 
         public DataTable ReadCsv(string fileName)
         {

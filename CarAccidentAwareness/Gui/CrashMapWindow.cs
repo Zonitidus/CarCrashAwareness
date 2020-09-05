@@ -16,12 +16,12 @@ using GMap.NET.WindowsForms.Markers;
 
 namespace CarAccidentAwareness
 {
-    public partial class CrashMap : Form
+    public partial class CrashMapWindow : Form
     {
 
         private DataManager dataManager;
 
-        public CrashMap()
+        public CrashMapWindow()
         {
             //String path = "../MDTA_Accidents_2.csv";
             dataManager = new DataManager();
@@ -45,31 +45,20 @@ namespace CarAccidentAwareness
 
         private void UpdateMap() {
 
-            List<String> coords = dataManager.GeoReferences(dataManager.Dt);
+            List<PointLatLng> coords = dataManager.GeoReferences(dataManager.Dt);
 
             GMapOverlay markerOverlay = new GMapOverlay();
 
-            foreach (String coor in coords)
+            foreach (PointLatLng coor in coords)
             {
                 try
                 {
-                    String[] coordenadas = coor.Split(' ');
-
-                    //double lat = Convert.ToDouble(coordenadas[0].Substring(2));
-                    //double lng = Convert.ToDouble(coordenadas[1].Remove(coordenadas[1].Length - 2));
-
-                    double lat = double.Parse(coordenadas[0].Substring(2), System.Globalization.CultureInfo.InvariantCulture);
-                    double lng = double.Parse(coordenadas[1].Remove(coordenadas[1].Length - 2), System.Globalization.CultureInfo.InvariantCulture);
-
-
-                    Console.WriteLine("INSIDE MAP: "+lat+","+lng);
-
-                    var marker = new GMarkerGoogle(new PointLatLng(lat, lng), GMarkerGoogleType.red);
+                    var marker = new GMarkerGoogle(coor, GMarkerGoogleType.red);
                     marker.IsVisible = true;
                     markerOverlay.Markers.Add(marker);
 
                     marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
-                    marker.ToolTipText = string.Format("Location: \n Lat: {0} \n Lng: {1}", lat, lng);
+                    marker.ToolTipText = string.Format("Location: \n Lat: {0} \n Lng: {1}", coor.Lat, coor.Lng);
                 }
                 catch (Exception e) {
                     Console.WriteLine(e.Message);
