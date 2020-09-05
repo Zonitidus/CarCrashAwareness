@@ -96,12 +96,19 @@ namespace CarAccidentAwareness.Model
             List<PointLatLng> geo = new List<PointLatLng>();
             foreach (DataRow dr in dt.Rows)
             {
-                string georeference = Convert.ToString(dr.ItemArray[4]);
-                string[] coord = georeference.Split(',');
-                double lat = double.Parse(coord[0].Substring(2), System.Globalization.CultureInfo.InvariantCulture);
-                double lng = double.Parse(coord[1].Remove(coord[1].Length - 2), System.Globalization.CultureInfo.InvariantCulture);
+                try {
+                    string georeference = Convert.ToString(dr.ItemArray[4]);
+                    string[] coord = georeference.Split(' ');
 
-                geo.Add(new PointLatLng(lat, lng));
+                    Console.WriteLine("ACA --------> " + coord[0] + " ---- " + coord[1]);
+
+                    double lat = double.Parse(coord[0].Substring(2), System.Globalization.CultureInfo.InvariantCulture);
+                    double lng = double.Parse(coord[1].Remove(coord[1].Length - 2), System.Globalization.CultureInfo.InvariantCulture);
+
+                    geo.Add(new PointLatLng(lat, lng));
+                }
+                catch (Exception e) { 
+                }
 
             }
             return geo;
