@@ -188,11 +188,11 @@ namespace CarAccidentAwareness.Model
 
         {
 
-            dtInstance.Columns.Add("CC Number", typeof(String));
-            dtInstance.Columns.Add("Date", typeof(String));
-            dtInstance.Columns.Add("Time", typeof(String));
-            dtInstance.Columns.Add("Accident Type", typeof(String));
-            dtInstance.Columns.Add("New Georeferenced Column", typeof(String));
+            dtInstance.Columns.Add("CcNumber", typeof(string));
+            dtInstance.Columns.Add("Date", typeof(string));
+            dtInstance.Columns.Add("Time", typeof(string));
+            dtInstance.Columns.Add("AccidentType", typeof(string));
+            dtInstance.Columns.Add("NewGeoreferencedColumn", typeof(string));
             dtInstance.Columns.Add("Lat", typeof(double));
             dtInstance.Columns.Add("Lng", typeof(double));
         }
@@ -253,11 +253,11 @@ namespace CarAccidentAwareness.Model
             return dt;
         }
 
-        public Dictionary<string, string> loadFieldsToFilter()
+        public Dictionary<string, string> LoadFieldsToFilter()
         {
-            dictFieldsFilter.Add("CC Number", "string");
+            dictFieldsFilter.Add("CcNumber", "string");
             dictFieldsFilter.Add("Date", "number");
-            dictFieldsFilter.Add("Accident Type", "categorical");
+            dictFieldsFilter.Add("AccidentType", "categorical");
             dictFieldsFilter.Add("Lat", "number");
             dictFieldsFilter.Add("Lng", "number");
 
@@ -265,7 +265,7 @@ namespace CarAccidentAwareness.Model
         }
 
 
-        public string getValueFilter(string key)
+        public string GetValueFilter(string key)
         {
             return dictFieldsFilter[key];
         }
@@ -276,17 +276,16 @@ namespace CarAccidentAwareness.Model
 
             foreach (DataRow row in dt.Rows)
             {
-                hashSetCatEleFilter.Add(row["Accident Type"].ToString());
+                hashSetCatEleFilter.Add(row["AccidentType"].ToString());
             }
 
             return hashSetCatEleFilter;
-
         }
 
 
-        public DataTable filterByColumnsCatText(string nameColumn, string dataFilter)
+        public DataTable FilterByColumnsCatText(string nameColumn, string dataFilter)
         {
-            string expression = "Date = '04/28/2019'";
+            string expression = $"{nameColumn} = '{dataFilter}'";
             DataRow[] foundRows;
             DataTable dataTableResult = new DataTable();
             foundRows = dt.Select(expression);
@@ -302,22 +301,34 @@ namespace CarAccidentAwareness.Model
         }
 
 
-        public void filterByColumnsNumber(string nameColumn, string minValue, string maxValue)
+        public void FilterByColumnsNumber(string nameColumn, string minValue, string maxValue, Boolean isDate)
         {
+            string expression = isDate ? $"{nameColumn} > '{minValue}' And {nameColumn} < '{maxValue}'" : $"{nameColumn} > {minValue} And {nameColumn} < {maxValue}";
+            DataRow[] foundRows;
+            //DataTable dataTableResult = new DataTable();
+            foundRows = dt.Select(expression);
 
+            Console.WriteLine(foundRows.Length);
+            for (int i = 0; i < foundRows.Length; i++)
+            {
+
+                Console.WriteLine(foundRows[i][0]);
+                //dataTableResult.ImportRow(foundRows[i]);
+            }
+            //return dataTableResult;
         }
 
         private string AssingClasificationToField(String nameField)
         {
             switch (nameField)
             {
-                case "CC Number":
+                case "CCNumber":
                     return "string";
                 case "Date":
                     return "number";
                 case "Time":
                     return "number";
-                case "Accident Type":
+                case "AccidentType":
                     return "categorical";
                 case "New Georeferenced Column":
                     return "string";

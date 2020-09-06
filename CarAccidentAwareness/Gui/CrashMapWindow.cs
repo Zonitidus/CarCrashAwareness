@@ -20,6 +20,8 @@ namespace CarAccidentAwareness
     {
 
         private DataManager dataManager;
+        private string filterNameSelected;
+        private string filterTypeSelected;
 
         public CrashMapWindow()
         {
@@ -82,7 +84,7 @@ namespace CarAccidentAwareness
                     if (ofd.ShowDialog() == DialogResult.OK)
                     {
                         dataGridInfoLoaded.DataSource = dataManager.GetDataTable(ofd.FileName);
-                        foreach (var itemFieldName in dataManager.loadFieldsToFilter())
+                        foreach (var itemFieldName in dataManager.LoadFieldsToFilter())
                         {
                             comboBoxSelFilter.Items.Add(itemFieldName.Key);
                         }
@@ -98,11 +100,10 @@ namespace CarAccidentAwareness
         }
         private void comboBoxSelFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string typeFilter = dataManager.getValueFilter(comboBoxSelFilter.SelectedItem.ToString());
-            //Clean filter
+            filterTypeSelected = dataManager.GetValueFilter(comboBoxSelFilter.SelectedItem.ToString());
+            filterNameSelected = comboBoxSelFilter.SelectedItem.ToString();
             filterCategorical.Items.Clear();
-
-            if (typeFilter.Equals("categorical") && comboBoxSelFilter.SelectedItem.Equals("Accident Type"))
+            if (filterTypeSelected.Equals("categorical") && filterNameSelected.Equals("AccidentType"))
             {
                 var hashSetCatEleFilter = dataManager.getCategoricalElementsColumn(comboBoxSelFilter.SelectedItem.ToString());
                 foreach (string item in hashSetCatEleFilter)
@@ -110,11 +111,11 @@ namespace CarAccidentAwareness
                     filterCategorical.Items.Add(item);
                 }
             }
-            allowFilterByItemSelected(typeFilter);
+            AllowFilterByItemSelected(filterTypeSelected);
         }
 
 
-        private void allowFilterByItemSelected(string key)
+        private void AllowFilterByItemSelected(string key)
         {
 
             switch (key)
@@ -174,10 +175,18 @@ namespace CarAccidentAwareness
 
         private void btnFilter_Click(object sender, EventArgs e)
         {
-            dataGridInfoLoaded.DataSource = null;
-            dataGridInfoLoaded.Rows.Clear();
-            dataGridInfoLoaded.DataSource = dataManager.filterByColumnsCatText("", "");
-
+            switch (filterTypeSelected)
+            {
+                case "string":
+                    dataManager.FilterByColumnsCatText(filterNameSelected, filterText.Text);
+                    break;
+                case "categorical":
+                    dataManager.FilterByColumnsCatText(filterNameSelected, filterCategorical.SelectedItem.ToString());
+                    break;
+                case "number":
+                    dataManager.FilterByColumnsNumber(filterNameSelected,filterMinValue.Text, filterMaxValue.Text,true);
+                    break;
+            }
         }
     }
 }
