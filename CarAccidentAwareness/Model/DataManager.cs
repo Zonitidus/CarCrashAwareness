@@ -388,5 +388,36 @@ namespace CarAccidentAwareness.Model
 
             return dictNumberTypeAccidents;
         }
+
+        public Dictionary<string, int> CreateDataToPointsChart()
+        {
+            Dictionary<string, int> dictNumberAccPerMonth2020 = new Dictionary<string, int>();
+            DataRow[] foundRows = dt.Select();
+
+
+            foreach (DataRow row in dt.Rows)
+            {
+                
+                if(row["Date"].ToString().Contains("/2020"))
+                {
+                    string[] arrayDate = row["Date"].ToString().Split('/');
+                    string dateToRegister = arrayDate[0] + "-" + arrayDate[2];
+
+                    if (arrayDate.Length == 3 && !dictNumberAccPerMonth2020.ContainsKey(dateToRegister))
+                    {
+                        dictNumberAccPerMonth2020.Add(dateToRegister, 1);
+                    }
+                    else if (dictNumberAccPerMonth2020.ContainsKey(dateToRegister))
+                    {
+                        dictNumberAccPerMonth2020[dateToRegister] = dictNumberAccPerMonth2020[dateToRegister] + 1;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Bad date format");
+                    }
+                }
+            }
+            return dictNumberAccPerMonth2020;
+        }
     }
 }
