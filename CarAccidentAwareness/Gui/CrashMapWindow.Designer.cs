@@ -195,6 +195,7 @@
             this.btnFilter.TabIndex = 13;
             this.btnFilter.Text = "Filter";
             this.btnFilter.UseVisualStyleBackColor = true;
+            this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
             // 
             // CrashMapWindow
             // 

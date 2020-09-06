@@ -43,7 +43,8 @@ namespace CarAccidentAwareness
             map.AutoScroll = true;
         }
 
-        private void UpdateMap() {
+        private void UpdateMap()
+        {
 
             List<PointLatLng> coords = dataManager.GeoReferences(dataManager.Dt);
 
@@ -60,8 +61,9 @@ namespace CarAccidentAwareness
                     marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
                     marker.ToolTipText = string.Format("Location: \n Lat: {0} \n Lng: {1}", coor.Lat, coor.Lng);
                 }
-                catch (Exception e) {
-                    
+                catch (Exception e)
+                {
+
                     Console.WriteLine(e.StackTrace);
                 }
 
@@ -82,7 +84,6 @@ namespace CarAccidentAwareness
                         dataGridInfoLoaded.DataSource = dataManager.GetDataTable(ofd.FileName);
                         foreach (var itemFieldName in dataManager.loadFieldsToFilter())
                         {
-                            Console.WriteLine(itemFieldName);
                             comboBoxSelFilter.Items.Add(itemFieldName.Key);
                         }
                         UpdateMap();
@@ -113,10 +114,10 @@ namespace CarAccidentAwareness
         }
 
 
-        private void allowFilterByItemSelected(string key) 
+        private void allowFilterByItemSelected(string key)
         {
 
-            switch (key) 
+            switch (key)
             {
                 case "categorical":
                     filterCategorical.Visible = true;
@@ -153,7 +154,7 @@ namespace CarAccidentAwareness
                     labelFilterMaxValue.Visible = false;
                     break;
             }
-        
+
         }
 
         private void minValueFilter_TextChanged(object sender, EventArgs e)
@@ -168,6 +169,14 @@ namespace CarAccidentAwareness
 
         private void label4_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnFilter_Click(object sender, EventArgs e)
+        {
+            dataGridInfoLoaded.DataSource = null;
+            dataGridInfoLoaded.Rows.Clear();
+            dataGridInfoLoaded.DataSource = dataManager.filterByColumnsCatText("", "");
 
         }
     }

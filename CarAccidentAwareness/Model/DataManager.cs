@@ -36,7 +36,7 @@ namespace CarAccidentAwareness.Model
             for (int i = 1; i < data.Count; i++)
             {
                 DataRow row = dt.NewRow();
-           
+
                 for (int j = 0; j < data[0].Count; j++)
                 {
                     try
@@ -56,8 +56,9 @@ namespace CarAccidentAwareness.Model
                             row[2] = arrayHour.Length == 3 ? hourAccident : "-";
 
                         }
-                        else if (j == 4) { 
-                         string geoRef = data[i][j].Replace("(", "").Replace(")", "").Replace("\"", "");
+                        else if (j == 4)
+                        {
+                            string geoRef = data[i][j].Replace("(", "").Replace(")", "").Replace("\"", "");
                             string[] arrayGeoRef = geoRef.Split(' ');
                             lat = double.Parse(arrayGeoRef[0], System.Globalization.CultureInfo.InvariantCulture);
                             lng = double.Parse(arrayGeoRef[1], System.Globalization.CultureInfo.InvariantCulture);
@@ -102,13 +103,7 @@ namespace CarAccidentAwareness.Model
             //---------------------------------------------
             //---------------------------------------------
             //Se garantiza que sin importar el formato que se descargue tome estas colu
-            dt.Columns.Add("CC Number", typeof(String));
-            dt.Columns.Add("Date", typeof(String));
-            dt.Columns.Add("Time", typeof(String));
-            dt.Columns.Add("Accident Type", typeof(String));
-            dt.Columns.Add("New Georeferenced Column", typeof(String));
-            dt.Columns.Add("Lat", typeof(double));
-            dt.Columns.Add("Lng", typeof(double));
+            createColumns(dt);
             //---------------------------------------------
             //---------------------------------------------
 
@@ -148,7 +143,8 @@ namespace CarAccidentAwareness.Model
             List<PointLatLng> geo = new List<PointLatLng>();
             foreach (DataRow dr in dt.Rows)
             {
-                try {
+                try
+                {
                     string georeference = Convert.ToString(dr.ItemArray[4]);
                     string[] coord = georeference.Split(' ');
 
@@ -157,7 +153,8 @@ namespace CarAccidentAwareness.Model
 
                     geo.Add(new PointLatLng(lat, lng));
                 }
-                catch (Exception e) { 
+                catch (Exception e)
+                {
                 }
 
             }
@@ -182,11 +179,23 @@ namespace CarAccidentAwareness.Model
                         geo.Add(new PointLatLng(lat, lng));
                     }
                 }
-                catch (Exception e) {}
+                catch (Exception e) { }
             }
             return geo;
         }
 
+        private void createColumns(DataTable dtInstance)
+
+        {
+
+            dtInstance.Columns.Add("CC Number", typeof(String));
+            dtInstance.Columns.Add("Date", typeof(String));
+            dtInstance.Columns.Add("Time", typeof(String));
+            dtInstance.Columns.Add("Accident Type", typeof(String));
+            dtInstance.Columns.Add("New Georeferenced Column", typeof(String));
+            dtInstance.Columns.Add("Lat", typeof(double));
+            dtInstance.Columns.Add("Lng", typeof(double));
+        }
         public List<PointLatLng> GeoReferences(DataTable dt, String minDate, String maxDate)
         {
             List<PointLatLng> geo = new List<PointLatLng>();
@@ -220,7 +229,7 @@ namespace CarAccidentAwareness.Model
 
             }
             catch (Exception e) { }
-            
+
             return geo;
         }
 
@@ -246,10 +255,10 @@ namespace CarAccidentAwareness.Model
 
         public Dictionary<string, string> loadFieldsToFilter()
         {
-            
+
 
             dictFieldsFilter.Add("CC Number", "string");
-            dictFieldsFilter.Add("Date","number");
+            dictFieldsFilter.Add("Date", "number");
             dictFieldsFilter.Add("Accident Type", "categorical");
             dictFieldsFilter.Add("Lat", "number");
             dictFieldsFilter.Add("Lng", "number");
@@ -263,7 +272,7 @@ namespace CarAccidentAwareness.Model
             return dictFieldsFilter[key];
         }
 
-        public HashSet<string> getCategoricalElementsColumn(string columName) 
+        public HashSet<string> getCategoricalElementsColumn(string columName)
         {
             var hashSetCatEleFilter = new HashSet<string>();
 
@@ -273,6 +282,30 @@ namespace CarAccidentAwareness.Model
             }
 
             return hashSetCatEleFilter;
+
+        }
+
+
+        public DataTable filterByColumnsCatText(string nameColumn, string dataFilter)
+        {
+            string expression = "Date = '04/28/2019'";
+            DataRow[] foundRows;
+            DataTable dataTableResult = new DataTable();
+            foundRows = dt.Select(expression);
+
+            Console.WriteLine(foundRows.Length);
+            for (int i = 0; i < foundRows.Length; i++)
+            {
+
+                Console.WriteLine(foundRows[i][0]);
+                dataTableResult.ImportRow(foundRows[i]);
+            }
+            return dataTableResult;
+        }
+
+
+        public void filterByColumnsNumber(string nameColumn, string minValue, string maxValue)
+        {
 
         }
 
