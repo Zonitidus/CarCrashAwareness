@@ -25,6 +25,9 @@ namespace CarAccidentAwareness.Model
 
         public DataTable GetDataTable(String path)
         {
+
+
+
             List<List<String>> data = ReadData(path);
             double lat;
             double lng;
@@ -88,11 +91,26 @@ namespace CarAccidentAwareness.Model
             String line = reader.ReadLine();
             String[] dataItem = line.Split(',');
             string unionString = "";
-            for (int g = 0; g < dataItem.Length; g++)
+            /*for (int g = 0; g < dataItem.Length; g++)
             {
                // Console.WriteLine(dataItem[g]);
                 CreateDataTable(dataItem[g]);
-            }
+            }*/
+
+
+            //---------------------------------------------
+            //---------------------------------------------
+            //Se garantiza que sin importar el formato que se descargue tome estas colu
+            dt.Columns.Add("CC Number", typeof(String));
+            dt.Columns.Add("Date", typeof(String));
+            dt.Columns.Add("Time", typeof(String));
+            dt.Columns.Add("Accident Type", typeof(String));
+            dt.Columns.Add("New Georeferenced Column", typeof(String));
+            dt.Columns.Add("Lat", typeof(double));
+            dt.Columns.Add("Lng", typeof(double));
+            //---------------------------------------------
+            //---------------------------------------------
+
             while (!reader.EndOfStream)
             {
                 line = reader.ReadLine();
@@ -237,7 +255,10 @@ namespace CarAccidentAwareness.Model
                     var splitsFields = rd.ReadLine().Split(',');
                     foreach (string fieldName in splitsFields)
                     {
-                        dictFieldsFilter.Add(fieldName, AssingClasificationToField(fieldName));
+                        if (!fieldName.Equals("Date") && !fieldName.Equals("New Georeferenced Column"))
+                        {
+                            dictFieldsFilter.Add(fieldName, AssingClasificationToField(fieldName));
+                        }
                     }
                     i++;
                 }
