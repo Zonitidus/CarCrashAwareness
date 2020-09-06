@@ -62,7 +62,7 @@ namespace CarAccidentAwareness.Model
                             string[] arrayGeoRef = geoRef.Split(' ');
                             lat = double.Parse(arrayGeoRef[0], System.Globalization.CultureInfo.InvariantCulture);
                             lng = double.Parse(arrayGeoRef[1], System.Globalization.CultureInfo.InvariantCulture);
-                            row[4] = geoRef;
+                            row[4] = data[i][j];
                             row[5] = lat;
                             row[6] = lng;
                         }
@@ -255,8 +255,6 @@ namespace CarAccidentAwareness.Model
 
         public Dictionary<string, string> loadFieldsToFilter()
         {
-
-
             dictFieldsFilter.Add("CC Number", "string");
             dictFieldsFilter.Add("Date", "number");
             dictFieldsFilter.Add("Accident Type", "categorical");
