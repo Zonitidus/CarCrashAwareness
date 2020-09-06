@@ -361,7 +361,32 @@ namespace CarAccidentAwareness.Model
             }
 
             return dictNumberAccPerYear;
+        }
 
+
+        public Dictionary<string, int> CreateDataToPieChart()
+        {
+            Dictionary<string, int> dictNumberTypeAccidents = new Dictionary<string, int>();
+            DataRow[] foundRows = dt.Select();
+
+
+            foreach (DataRow row in dt.Rows)
+            {
+                if (!row.Equals("") && !dictNumberTypeAccidents.ContainsKey(row["AccidentType"].ToString()))
+                {
+                    dictNumberTypeAccidents.Add(row["AccidentType"].ToString(), 1);
+                }
+                else if (dictNumberTypeAccidents.ContainsKey(row["AccidentType"].ToString()))
+                {
+                    dictNumberTypeAccidents[row["AccidentType"].ToString()] = dictNumberTypeAccidents[row["AccidentType"].ToString()] + 1;
+                }
+                else
+                {
+                    Console.WriteLine("Bad type accident format");
+                }
+            }
+
+            return dictNumberTypeAccidents;
         }
     }
 }

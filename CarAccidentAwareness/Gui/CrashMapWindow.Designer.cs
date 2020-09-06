@@ -218,7 +218,7 @@
             this.diagramBars.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.diagramBars.Legends.Add(legend1);
-            this.diagramBars.Location = new System.Drawing.Point(12, 492);
+            this.diagramBars.Location = new System.Drawing.Point(14, 450);
             this.diagramBars.Name = "diagramBars";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
@@ -234,9 +234,10 @@
             this.diagramPoints.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
             this.diagramPoints.Legends.Add(legend2);
-            this.diagramPoints.Location = new System.Drawing.Point(886, 492);
+            this.diagramPoints.Location = new System.Drawing.Point(885, 450);
             this.diagramPoints.Name = "diagramPoints";
             series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.diagramPoints.Series.Add(series2);
@@ -250,9 +251,11 @@
             this.dragramPie.ChartAreas.Add(chartArea3);
             legend3.Name = "Legend1";
             this.dragramPie.Legends.Add(legend3);
-            this.dragramPie.Location = new System.Drawing.Point(451, 492);
+            this.dragramPie.Location = new System.Drawing.Point(453, 450);
             this.dragramPie.Name = "dragramPie";
+            this.dragramPie.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
             series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
             series3.Legend = "Legend1";
             series3.Name = "Series1";
             this.dragramPie.Series.Add(series3);
@@ -264,7 +267,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1301, 954);
+            this.ClientSize = new System.Drawing.Size(1301, 794);
             this.Controls.Add(this.dragramPie);
             this.Controls.Add(this.diagramPoints);
             this.Controls.Add(this.diagramBars);

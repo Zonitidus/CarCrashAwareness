@@ -94,6 +94,7 @@ namespace CarAccidentAwareness
                 }
                 //Create Charts
                 DrawBarsChart(dataManager.CreateDataToBarChart());
+                DrawPieChart(dataManager.CreateDataToPieChart());
             }
             catch (Exception ex)
             {
@@ -163,16 +164,31 @@ namespace CarAccidentAwareness
 
         private void DrawBarsChart(Dictionary<string, int> dictValuesChart)
         {
-
             diagramBars.Titles.Add("Report Number of Transit Accidents since 2012 to 2020 in USA");
-            diagramBars.Series["Number Accidents"].IsValueShownAsLabel = true;
-
+            
             var list = dictValuesChart.Keys.ToList();
             list.Sort();
 
             foreach (var key in list)
             {
                 diagramBars.Series["Series1"].Points.AddXY(key, dictValuesChart[key]);
+            }
+        }
+
+
+
+        private void DrawPieChart(Dictionary<string, int> dictValuesChart)
+        {
+            dragramPie.Titles.Add("Report Number of Transit Accidents per Type of Accidente since 2012 to 2020 in USA");
+            dragramPie.Series["Series1"].IsValueShownAsLabel = true;
+
+            foreach (KeyValuePair<string, int> item in dictValuesChart)
+            {
+
+                Console.WriteLine("Key = {0}, Value = {1}",
+                              item.Key, item.Value);
+
+                dragramPie.Series["Series1"].Points.AddXY(item.Key, item.Value);
             }
         }
 
