@@ -28,6 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxSelFilter = new System.Windows.Forms.ComboBox();
             this.map = new GMap.NET.WindowsForms.GMapControl();
@@ -42,7 +51,13 @@
             this.labelFilterMaxValue = new System.Windows.Forms.Label();
             this.labelFilterText = new System.Windows.Forms.Label();
             this.btnFilter = new System.Windows.Forms.Button();
+            this.diagramBars = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.diagramPoints = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.dragramPie = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInfoLoaded)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.diagramBars)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.diagramPoints)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dragramPie)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -197,11 +212,62 @@
             this.btnFilter.UseVisualStyleBackColor = true;
             this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
             // 
+            // diagramBars
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.diagramBars.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.diagramBars.Legends.Add(legend1);
+            this.diagramBars.Location = new System.Drawing.Point(12, 492);
+            this.diagramBars.Name = "diagramBars";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.diagramBars.Series.Add(series1);
+            this.diagramBars.Size = new System.Drawing.Size(409, 300);
+            this.diagramBars.TabIndex = 14;
+            this.diagramBars.Text = "chart1";
+            // 
+            // diagramPoints
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.diagramPoints.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.diagramPoints.Legends.Add(legend2);
+            this.diagramPoints.Location = new System.Drawing.Point(886, 492);
+            this.diagramPoints.Name = "diagramPoints";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.diagramPoints.Series.Add(series2);
+            this.diagramPoints.Size = new System.Drawing.Size(404, 300);
+            this.diagramPoints.TabIndex = 15;
+            this.diagramPoints.Text = "chart2";
+            // 
+            // dragramPie
+            // 
+            chartArea3.Name = "ChartArea1";
+            this.dragramPie.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.dragramPie.Legends.Add(legend3);
+            this.dragramPie.Location = new System.Drawing.Point(451, 492);
+            this.dragramPie.Name = "dragramPie";
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.dragramPie.Series.Add(series3);
+            this.dragramPie.Size = new System.Drawing.Size(404, 300);
+            this.dragramPie.TabIndex = 16;
+            this.dragramPie.Text = "chart3";
+            // 
             // CrashMapWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1301, 568);
+            this.ClientSize = new System.Drawing.Size(1301, 954);
+            this.Controls.Add(this.dragramPie);
+            this.Controls.Add(this.diagramPoints);
+            this.Controls.Add(this.diagramBars);
             this.Controls.Add(this.btnFilter);
             this.Controls.Add(this.labelFilterText);
             this.Controls.Add(this.labelFilterMaxValue);
@@ -220,6 +286,9 @@
             this.Name = "CrashMapWindow";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInfoLoaded)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.diagramBars)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.diagramPoints)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dragramPie)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -241,6 +310,9 @@
         private System.Windows.Forms.Label labelFilterMaxValue;
         private System.Windows.Forms.Label labelFilterText;
         private System.Windows.Forms.Button btnFilter;
+        private System.Windows.Forms.DataVisualization.Charting.Chart diagramBars;
+        private System.Windows.Forms.DataVisualization.Charting.Chart diagramPoints;
+        private System.Windows.Forms.DataVisualization.Charting.Chart dragramPie;
     }
 }
 

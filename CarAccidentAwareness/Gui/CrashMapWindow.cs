@@ -13,6 +13,7 @@ using GMap.NET;
 using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace CarAccidentAwareness
 {
@@ -91,6 +92,8 @@ namespace CarAccidentAwareness
                         UpdateMap();
                     };
                 }
+                //Create Charts
+                DrawBarsChart(dataManager.CreateDataToBarChart());
             }
             catch (Exception ex)
             {
@@ -156,6 +159,21 @@ namespace CarAccidentAwareness
                     break;
             }
 
+        }
+
+        private void DrawBarsChart(Dictionary<string, int> dictValuesChart)
+        {
+
+            diagramBars.Titles.Add("Report Number of Transit Accidents since 2012 to 2020 in USA");
+            diagramBars.Series["Number Accidents"].IsValueShownAsLabel = true;
+
+            var list = dictValuesChart.Keys.ToList();
+            list.Sort();
+
+            foreach (var key in list)
+            {
+                diagramBars.Series["Series1"].Points.AddXY(key, dictValuesChart[key]);
+            }
         }
 
         private void minValueFilter_TextChanged(object sender, EventArgs e)

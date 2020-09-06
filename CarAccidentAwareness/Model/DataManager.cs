@@ -26,9 +26,6 @@ namespace CarAccidentAwareness.Model
 
         public DataTable GetDataTable(String path)
         {
-
-
-
             List<List<String>> data = ReadData(path);
             double lat;
             double lng;
@@ -78,11 +75,8 @@ namespace CarAccidentAwareness.Model
                 }
                 dt.Rows.Add(row);
             }
-
-
-
-
             csvFile = new StreamReader(path);
+            CreateDataToBarChart();
             return dt;
         }
 
@@ -276,7 +270,7 @@ namespace CarAccidentAwareness.Model
 
             foreach (DataRow row in dt.Rows)
             {
-                hashSetCatEleFilter.Add(row["AccidentType"].ToString());
+                hashSetCatEleFilter.Add(row[columName].ToString());
             }
 
             return hashSetCatEleFilter;
@@ -339,6 +333,34 @@ namespace CarAccidentAwareness.Model
                 default:
                     return "default";
             }
+
+        }
+
+        public Dictionary<string, int> CreateDataToBarChart() 
+        {
+            Dictionary<string,int> dictNumberAccPerYear = new Dictionary<string, int>();
+            DataRow[] foundRows = dt.Select();
+
+
+            foreach (DataRow row in dt.Rows)
+            {
+                string[] arrayDate = row["Date"].ToString().Split('/');
+
+                if (arrayDate.Length == 3 && !dictNumberAccPerYear.ContainsKey(arrayDate[2]))
+                {
+                    dictNumberAccPerYear.Add(arrayDate[2], 1);
+                }
+                else if (dictNumberAccPerYear.ContainsKey(arrayDate[2]))
+                {
+                    dictNumberAccPerYear[arrayDate[2]] = dictNumberAccPerYear[arrayDate[2]] + 1;
+                }
+                else 
+                {
+                    Console.WriteLine("Bad date format");
+                }
+            }
+
+            return dictNumberAccPerYear;
 
         }
     }
