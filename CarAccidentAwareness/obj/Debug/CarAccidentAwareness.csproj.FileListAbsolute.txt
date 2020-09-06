@@ -27,7 +27,6 @@ C:\Users\Felipe\Documents\Personales\ing_sistemas\pi_1\CarCrashAwareness\CarAcci
 C:\Users\Felipe\Documents\Personales\ing_sistemas\pi_1\CarCrashAwareness\CarAccidentAwareness\bin\Debug\GMap.NET.Core.dll
 C:\Users\Felipe\Documents\Personales\ing_sistemas\pi_1\CarCrashAwareness\CarAccidentAwareness\bin\Debug\GMap.NET.WindowsForms.dll
 C:\Users\Felipe\Documents\Personales\ing_sistemas\pi_1\CarCrashAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.csprojAssemblyReference.cache
-C:\Users\Felipe\Documents\Personales\ing_sistemas\pi_1\CarCrashAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.CrashMap.resources
 C:\Users\Felipe\Documents\Personales\ing_sistemas\pi_1\CarCrashAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.Properties.Resources.resources
 C:\Users\Felipe\Documents\Personales\ing_sistemas\pi_1\CarCrashAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.csproj.GenerateResource.cache
 C:\Users\Felipe\Documents\Personales\ing_sistemas\pi_1\CarCrashAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.csproj.CoreCompileInputs.cache
@@ -47,3 +46,4 @@ C:\Users\zonif\OneDrive\Escritorio\Work\QuintoSemestre\Integrador\Talleres\Talle
 C:\Users\zonif\OneDrive\Escritorio\Work\QuintoSemestre\Integrador\Talleres\Taller2\CarCrashAwareness\CarAccidentAwareness\bin\Debug\GMap.NET.WindowsForms.dll
 C:\Users\zonif\OneDrive\Escritorio\Work\QuintoSemestre\Integrador\Talleres\Taller2\CarCrashAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.csproj.CopyComplete
 C:\Users\zonif\OneDrive\Escritorio\Work\QuintoSemestre\Integrador\Talleres\Taller2\CarCrashAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.CrashMapWindow.resources
+C:\Users\Felipe\Documents\Personales\ing_sistemas\pi_1\CarCrashAwareness\CarAccidentAwareness\obj\Debug\CarAccidentAwareness.CrashMapWindow.resources

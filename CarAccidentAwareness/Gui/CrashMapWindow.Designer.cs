@@ -64,7 +64,7 @@
             this.map.GrayScaleMode = false;
             this.map.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.map.LevelsKeepInMemmory = 5;
-            this.map.Location = new System.Drawing.Point(544, 95);
+            this.map.Location = new System.Drawing.Point(720, 95);
             this.map.Margin = new System.Windows.Forms.Padding(2);
             this.map.MarkersEnabled = true;
             this.map.MaxZoom = 2;
@@ -79,7 +79,7 @@
             this.map.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.map.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.map.ShowTileGridLines = false;
-            this.map.Size = new System.Drawing.Size(497, 334);
+            this.map.Size = new System.Drawing.Size(570, 334);
             this.map.TabIndex = 2;
             this.map.Zoom = 0D;
             this.map.Load += new System.EventHandler(this.map_Load);
@@ -99,21 +99,21 @@
             this.dataGridInfoLoaded.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridInfoLoaded.Location = new System.Drawing.Point(12, 95);
             this.dataGridInfoLoaded.Name = "dataGridInfoLoaded";
-            this.dataGridInfoLoaded.Size = new System.Drawing.Size(507, 334);
+            this.dataGridInfoLoaded.Size = new System.Drawing.Size(703, 334);
             this.dataGridInfoLoaded.TabIndex = 4;
             // 
-            // CrashMap
+            // CrashMapWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1052, 568);
+            this.ClientSize = new System.Drawing.Size(1301, 568);
             this.Controls.Add(this.dataGridInfoLoaded);
             this.Controls.Add(this.btnLoadInfo);
             this.Controls.Add(this.map);
             this.Controls.Add(this.comboBoxSelFilter);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "CrashMap";
+            this.Name = "CrashMapWindow";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInfoLoaded)).EndInit();
             this.ResumeLayout(false);

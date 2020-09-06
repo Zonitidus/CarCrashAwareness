@@ -25,30 +25,62 @@ namespace CarAccidentAwareness.Model
 
         public DataTable GetDataTable(String path)
         {
-            Console.WriteLine("Entro 1");
             List<List<String>> data = ReadData(path);
-            Console.WriteLine("Entro 1.5");
-            for (int i = 0; i < data.Count; i++)
+            double lat;
+            double lng;
+
+            for (int i = 1; i < data.Count; i++)
             {
                 DataRow row = dt.NewRow();
+           
                 for (int j = 0; j < data[0].Count; j++)
                 {
                     try
                     {
-                        row[j] = data[i][j];
+                        if (j == 0)
+                        {
+
+                            string id = data[i][j].Replace("\"", "");
+                            row[0] = id;
+
+                        }
+                        else if (j == 2)
+                        {
+
+                            string[] arrayHour = data[i][j].Split(' ');
+                            string hourAccident = arrayHour[1] + arrayHour[2].ToLower();
+                            row[2] = arrayHour.Length == 3 ? hourAccident : "-";
+
+                        }
+                        else if (j == 4) { 
+                         string geoRef = data[i][j].Replace("(", "").Replace(")", "").Replace("\"", "");
+                            string[] arrayGeoRef = geoRef.Split(' ');
+                            lat = double.Parse(arrayGeoRef[0], System.Globalization.CultureInfo.InvariantCulture);
+                            lng = double.Parse(arrayGeoRef[1], System.Globalization.CultureInfo.InvariantCulture);
+                            row[4] = geoRef;
+                            row[5] = lat;
+                            row[6] = lng;
+                        }
+                        else
+                        {
+                            row[j] = data[i][j];
+                        }
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine(i);
+                        //Console.WriteLine(i);
                     }
                 }
                 dt.Rows.Add(row);
             }
 
-            Console.WriteLine("Entro 4");
+
+
+
             csvFile = new StreamReader(path);
             return dt;
         }
+
         private List<List<String>> ReadData(String path)
         {
             StreamReader reader = new StreamReader(path);
@@ -58,6 +90,7 @@ namespace CarAccidentAwareness.Model
             string unionString = "";
             for (int g = 0; g < dataItem.Length; g++)
             {
+               // Console.WriteLine(dataItem[g]);
                 CreateDataTable(dataItem[g]);
             }
             while (!reader.EndOfStream)
@@ -172,15 +205,6 @@ namespace CarAccidentAwareness.Model
             return geo;
         }
 
-
-
-
-
-
-
-
-
-
         public DataTable ReadCsv(string fileName)
         {
             DataTable dt = new DataTable("Data");
@@ -213,7 +237,6 @@ namespace CarAccidentAwareness.Model
                     var splitsFields = rd.ReadLine().Split(',');
                     foreach (string fieldName in splitsFields)
                     {
-                        Console.WriteLine(AssingClasificationToField(fieldName));
                         dictFieldsFilter.Add(fieldName, AssingClasificationToField(fieldName));
                     }
                     i++;
@@ -231,13 +254,17 @@ namespace CarAccidentAwareness.Model
                 case "CC Number":
                     return "string";
                 case "Date":
-                    return "string";
+                    return "number";
                 case "Time":
-                    return "string";
+                    return "number";
                 case "Accident Type":
                     return "categorical";
                 case "New Georeferenced Column":
                     return "string";
+                case "Lat":
+                    return "number";
+                case "Lng":
+                    return "number";
                 default:
                     return "default";
             }
