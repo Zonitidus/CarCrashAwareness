@@ -33,6 +33,15 @@
             this.map = new GMap.NET.WindowsForms.GMapControl();
             this.btnLoadInfo = new System.Windows.Forms.Button();
             this.dataGridInfoLoaded = new System.Windows.Forms.DataGridView();
+            this.filterCategorical = new System.Windows.Forms.ComboBox();
+            this.labelFilterCategorical = new System.Windows.Forms.Label();
+            this.filterMinValue = new System.Windows.Forms.TextBox();
+            this.filterMaxValue = new System.Windows.Forms.TextBox();
+            this.filterText = new System.Windows.Forms.TextBox();
+            this.labelFilterMinValue = new System.Windows.Forms.Label();
+            this.labelFilterMaxValue = new System.Windows.Forms.Label();
+            this.labelFilterText = new System.Windows.Forms.Label();
+            this.btnFilter = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInfoLoaded)).BeginInit();
             this.SuspendLayout();
             // 
@@ -102,11 +111,105 @@
             this.dataGridInfoLoaded.Size = new System.Drawing.Size(703, 334);
             this.dataGridInfoLoaded.TabIndex = 4;
             // 
+            // filterCategorical
+            // 
+            this.filterCategorical.FormattingEnabled = true;
+            this.filterCategorical.Location = new System.Drawing.Point(533, 26);
+            this.filterCategorical.Name = "filterCategorical";
+            this.filterCategorical.Size = new System.Drawing.Size(121, 21);
+            this.filterCategorical.TabIndex = 5;
+            this.filterCategorical.Visible = false;
+            // 
+            // labelFilterCategorical
+            // 
+            this.labelFilterCategorical.AutoSize = true;
+            this.labelFilterCategorical.Location = new System.Drawing.Point(530, 5);
+            this.labelFilterCategorical.Name = "labelFilterCategorical";
+            this.labelFilterCategorical.Size = new System.Drawing.Size(84, 13);
+            this.labelFilterCategorical.TabIndex = 6;
+            this.labelFilterCategorical.Text = "Filter categorical";
+            this.labelFilterCategorical.Visible = false;
+            // 
+            // filterMinValue
+            // 
+            this.filterMinValue.Location = new System.Drawing.Point(530, 26);
+            this.filterMinValue.Name = "filterMinValue";
+            this.filterMinValue.Size = new System.Drawing.Size(100, 20);
+            this.filterMinValue.TabIndex = 7;
+            this.filterMinValue.Visible = false;
+            this.filterMinValue.TextChanged += new System.EventHandler(this.minValueFilter_TextChanged);
+            // 
+            // filterMaxValue
+            // 
+            this.filterMaxValue.Location = new System.Drawing.Point(640, 26);
+            this.filterMaxValue.Name = "filterMaxValue";
+            this.filterMaxValue.Size = new System.Drawing.Size(100, 20);
+            this.filterMaxValue.TabIndex = 8;
+            this.filterMaxValue.Visible = false;
+            // 
+            // filterText
+            // 
+            this.filterText.Location = new System.Drawing.Point(530, 27);
+            this.filterText.Name = "filterText";
+            this.filterText.Size = new System.Drawing.Size(100, 20);
+            this.filterText.TabIndex = 9;
+            this.filterText.Visible = false;
+            // 
+            // labelFilterMinValue
+            // 
+            this.labelFilterMinValue.AutoSize = true;
+            this.labelFilterMinValue.Location = new System.Drawing.Point(530, 5);
+            this.labelFilterMinValue.Name = "labelFilterMinValue";
+            this.labelFilterMinValue.Size = new System.Drawing.Size(75, 13);
+            this.labelFilterMinValue.TabIndex = 10;
+            this.labelFilterMinValue.Text = "Min value filter";
+            this.labelFilterMinValue.Visible = false;
+            this.labelFilterMinValue.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // labelFilterMaxValue
+            // 
+            this.labelFilterMaxValue.AutoSize = true;
+            this.labelFilterMaxValue.Location = new System.Drawing.Point(637, 5);
+            this.labelFilterMaxValue.Name = "labelFilterMaxValue";
+            this.labelFilterMaxValue.Size = new System.Drawing.Size(78, 13);
+            this.labelFilterMaxValue.TabIndex = 11;
+            this.labelFilterMaxValue.Text = "Max value filter";
+            this.labelFilterMaxValue.Visible = false;
+            this.labelFilterMaxValue.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // labelFilterText
+            // 
+            this.labelFilterText.AutoSize = true;
+            this.labelFilterText.Location = new System.Drawing.Point(527, 6);
+            this.labelFilterText.Name = "labelFilterText";
+            this.labelFilterText.Size = new System.Drawing.Size(50, 13);
+            this.labelFilterText.TabIndex = 12;
+            this.labelFilterText.Text = "Text filter";
+            this.labelFilterText.Visible = false;
+            // 
+            // btnFilter
+            // 
+            this.btnFilter.Location = new System.Drawing.Point(786, 12);
+            this.btnFilter.Name = "btnFilter";
+            this.btnFilter.Size = new System.Drawing.Size(142, 39);
+            this.btnFilter.TabIndex = 13;
+            this.btnFilter.Text = "Filter";
+            this.btnFilter.UseVisualStyleBackColor = true;
+            // 
             // CrashMapWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1301, 568);
+            this.Controls.Add(this.btnFilter);
+            this.Controls.Add(this.labelFilterText);
+            this.Controls.Add(this.labelFilterMaxValue);
+            this.Controls.Add(this.labelFilterMinValue);
+            this.Controls.Add(this.filterText);
+            this.Controls.Add(this.filterMaxValue);
+            this.Controls.Add(this.filterMinValue);
+            this.Controls.Add(this.labelFilterCategorical);
+            this.Controls.Add(this.filterCategorical);
             this.Controls.Add(this.dataGridInfoLoaded);
             this.Controls.Add(this.btnLoadInfo);
             this.Controls.Add(this.map);
@@ -128,6 +231,15 @@
         private GMap.NET.WindowsForms.GMapControl map;
         private System.Windows.Forms.Button btnLoadInfo;
         private System.Windows.Forms.DataGridView dataGridInfoLoaded;
+        private System.Windows.Forms.ComboBox filterCategorical;
+        private System.Windows.Forms.Label labelFilterCategorical;
+        private System.Windows.Forms.TextBox filterMinValue;
+        private System.Windows.Forms.TextBox filterMaxValue;
+        private System.Windows.Forms.TextBox filterText;
+        private System.Windows.Forms.Label labelFilterMinValue;
+        private System.Windows.Forms.Label labelFilterMaxValue;
+        private System.Windows.Forms.Label labelFilterText;
+        private System.Windows.Forms.Button btnFilter;
     }
 }
 

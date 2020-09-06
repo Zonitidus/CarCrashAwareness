@@ -97,8 +97,78 @@ namespace CarAccidentAwareness
         }
         private void comboBoxSelFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string typeFilter = dataManager.getValueFilter(comboBoxSelFilter.SelectedItem.ToString());
+            //Clean filter
+            filterCategorical.Items.Clear();
+
+            if (typeFilter.Equals("categorical") && comboBoxSelFilter.SelectedItem.Equals("Accident Type"))
+            {
+                var hashSetCatEleFilter = dataManager.getCategoricalElementsColumn(comboBoxSelFilter.SelectedItem.ToString());
+                foreach (string item in hashSetCatEleFilter)
+                {
+                    filterCategorical.Items.Add(item);
+                }
+            }
+            allowFilterByItemSelected(typeFilter);
+        }
+
+
+        private void allowFilterByItemSelected(string key) 
+        {
+
+            switch (key) 
+            {
+                case "categorical":
+                    filterCategorical.Visible = true;
+                    labelFilterCategorical.Visible = true;
+                    //------------------------
+                    filterMinValue.Visible = false;
+                    labelFilterMinValue.Visible = false;
+                    filterMaxValue.Visible = false;
+                    labelFilterMaxValue.Visible = false;
+                    filterText.Visible = false;
+                    labelFilterText.Visible = false;
+                    break;
+                case "number":
+                    filterMinValue.Visible = true;
+                    labelFilterMinValue.Visible = true;
+                    filterMaxValue.Visible = true;
+                    labelFilterMaxValue.Visible = true;
+                    //------------------------
+                    filterCategorical.Visible = false;
+                    labelFilterCategorical.Visible = false;
+                    filterText.Visible = false;
+                    labelFilterText.Visible = false;
+
+                    break;
+                case "string":
+                    filterText.Visible = true;
+                    labelFilterText.Visible = true;
+                    //------------------------
+                    filterCategorical.Visible = false;
+                    labelFilterCategorical.Visible = false;
+                    filterMinValue.Visible = false;
+                    labelFilterMinValue.Visible = false;
+                    filterMaxValue.Visible = false;
+                    labelFilterMaxValue.Visible = false;
+                    break;
+            }
+        
+        }
+
+        private void minValueFilter_TextChanged(object sender, EventArgs e)
+        {
 
         }
 
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

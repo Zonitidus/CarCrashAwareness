@@ -9,6 +9,7 @@ namespace CarAccidentAwareness.Model
 {
     class DataManager
     {
+        private Dictionary<string, string> dictFieldsFilter = new Dictionary<string, string>();
         private StreamReader csvFile;
         private DataTable dt = new DataTable();
 
@@ -245,31 +246,38 @@ namespace CarAccidentAwareness.Model
 
         public Dictionary<string, string> loadFieldsToFilter()
         {
-            Dictionary<string, string> dictFieldsFilter = new Dictionary<string, string>();
+            
 
-            using (var rd = csvFile)
-            {
-                int i = 0;
-                while (!rd.EndOfStream && i == 0)
-                {
-                    var splitsFields = rd.ReadLine().Split(',');
-                    foreach (string fieldName in splitsFields)
-                    {
-                        if (!fieldName.Equals("Date") && !fieldName.Equals("New Georeferenced Column"))
-                        {
-                            dictFieldsFilter.Add(fieldName, AssingClasificationToField(fieldName));
-                        }
-                    }
-                    i++;
-                }
+            dictFieldsFilter.Add("CC Number", "string");
+            dictFieldsFilter.Add("Date","number");
+            dictFieldsFilter.Add("Accident Type", "categorical");
+            dictFieldsFilter.Add("Lat", "number");
+            dictFieldsFilter.Add("Lng", "number");
 
-            }
             return dictFieldsFilter;
+        }
+
+
+        public string getValueFilter(string key)
+        {
+            return dictFieldsFilter[key];
+        }
+
+        public HashSet<string> getCategoricalElementsColumn(string columName) 
+        {
+            var hashSetCatEleFilter = new HashSet<string>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                hashSetCatEleFilter.Add(row["Accident Type"].ToString());
+            }
+
+            return hashSetCatEleFilter;
+
         }
 
         private string AssingClasificationToField(String nameField)
         {
-
             switch (nameField)
             {
                 case "CC Number":
