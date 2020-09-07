@@ -46,7 +46,7 @@ namespace CarAccidentAwareness
             map.AutoScroll = true;
         }
 
-        private void UpdateMap()
+        private void InitializeMap()
         {
 
             List<PointLatLng> coords = dataManager.GeoReferences(dataManager.Dt);
@@ -89,7 +89,7 @@ namespace CarAccidentAwareness
                         {
                             comboBoxSelFilter.Items.Add(itemFieldName.Key);
                         }
-                        UpdateMap();
+                        InitializeMap();
                     };
                 }
                 //Create Charts
@@ -226,15 +226,59 @@ namespace CarAccidentAwareness
             switch (filterTypeSelected)
             {
                 case "string":
-                    dataManager.FilterByColumnsCatText(filterNameSelected, filterText.Text);
+                    DataTable temp = dataManager.FilterByColumnsCatText(filterNameSelected, filterText.Text); 
+                    UpdateMap(temp);
+                    UpdateTable(temp);
                     break;
                 case "categorical":
-                    dataManager.FilterByColumnsCatText(filterNameSelected, filterCategorical.SelectedItem.ToString());
+                    DataTable temp2 = dataManager.FilterByColumnsCatText(filterNameSelected, filterCategorical.SelectedItem.ToString());
+                    UpdateMap(temp2);
+                    UpdateTable(temp2);
                     break;
                 case "number":
-                    dataManager.FilterByColumnsNumber(filterNameSelected,filterMinValue.Text, filterMaxValue.Text,true);
+                    DataTable temp3 = dataManager.FilterByColumnsNumber(filterNameSelected,filterMinValue.Text, filterMaxValue.Text,true);
+                    UpdateMap(temp3);
+                    UpdateTable(temp3);
                     break;
             }
         }
+
+        public void UpdateMap(DataTable temp) {
+
+            map.Overlays.Clear();
+
+            List<PointLatLng> coords = dataManager.GeoReferences(temp);
+
+            GMapOverlay markerOverlay = new GMapOverlay();
+
+            foreach (PointLatLng coor in coords)
+            {
+                try
+                {
+                    var marker = new GMarkerGoogle(coor, GMarkerGoogleType.red);
+                    marker.IsVisible = true;
+                    markerOverlay.Markers.Add(marker);
+
+                    marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                    marker.ToolTipText = string.Format("Location: \n Lat: {0} \n Lng: {1}", coor.Lat, coor.Lng);
+                }
+                catch (Exception e)
+                {
+
+                    Console.WriteLine(e.StackTrace);
+                }
+
+            }
+
+            map.Overlays.Add(markerOverlay);
+
+        }
+
+
+        public void UpdateTable(DataTable filteredTable) {
+
+            dataGridInfoLoaded.DataSource = filteredTable;
+        }
+
     }
 }

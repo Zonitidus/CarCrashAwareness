@@ -190,11 +190,14 @@ namespace CarAccidentAwareness.Model
             dtInstance.Columns.Add("Lat", typeof(double));
             dtInstance.Columns.Add("Lng", typeof(double));
         }
+
+        //Entry must be day/mont/year
         public List<PointLatLng> GeoReferences(DataTable dt, String minDate, String maxDate)
         {
             List<PointLatLng> geo = new List<PointLatLng>();
 
             string[] minDatet = minDate.Split('/');
+            //YEAR - MONTH - DAY
             DateTime dateMin = new DateTime(Convert.ToInt32(minDatet[2]), Convert.ToInt32(minDatet[1]), Convert.ToInt32(minDatet[0]));
 
             string[] maxDatet = maxDate.Split('/');
@@ -280,36 +283,105 @@ namespace CarAccidentAwareness.Model
         public DataTable FilterByColumnsCatText(string nameColumn, string dataFilter)
         {
             string expression = $"{nameColumn} = '{dataFilter}'";
+            
             DataRow[] foundRows;
             DataTable dataTableResult = new DataTable();
-            foundRows = dt.Select(expression);
+            DataTable dtCopy = dt.Copy();
+            foundRows = dtCopy.Select(expression);
+
+            createColumns(dataTableResult);
 
             Console.WriteLine(foundRows.Length);
             for (int i = 0; i < foundRows.Length; i++)
             {
 
-                Console.WriteLine(foundRows[i][0]);
-                dataTableResult.ImportRow(foundRows[i]);
+                try
+                {
+
+                    if (foundRows[i].ItemArray.Length == dtCopy.Columns.Count)
+                    {
+                        Console.WriteLine(foundRows[i].ItemArray.Length+ " == "+ dtCopy.Columns.Count);
+                        dataTableResult.Rows.Add(foundRows[i].ItemArray);
+                        //dataTableResult.ImportRow(foundRows[i]);
+                    }
+                    else
+                    {
+                        Console.WriteLine("AaaAAAAaaAAAAaaaA");
+                    }
+
+                   
+
+
+                }
+                catch (Exception e) {
+
+                    if (i == 0)
+                        Console.WriteLine(e.StackTrace);
+                        Console.WriteLine(e.Message);
+                }
             }
+
+            //this.dt = dataTableResult;
             return dataTableResult;
         }
 
 
-        public void FilterByColumnsNumber(string nameColumn, string minValue, string maxValue, Boolean isDate)
+        public DataTable FilterByColumnsNumber(string nameColumn, string minValue, string maxValue, Boolean isDate)
         {
             string expression = isDate ? $"{nameColumn} > '{minValue}' And {nameColumn} < '{maxValue}'" : $"{nameColumn} > {minValue} And {nameColumn} < {maxValue}";
             DataRow[] foundRows;
-            //DataTable dataTableResult = new DataTable();
-            foundRows = dt.Select(expression);
+            DataTable dataTableResult = new DataTable();
+            DataTable dtCopy = dt.Copy();
+            Console.WriteLine(" -------------------- Expresión: " + minValue);
+            Console.WriteLine(" -------------------- Expresión: " + maxValue);
+            Console.WriteLine(" -------------------- Expresión: "+expression);
+            foundRows = dtCopy.Select(expression);
+
+            createColumns(dataTableResult);
 
             Console.WriteLine(foundRows.Length);
-            for (int i = 0; i < foundRows.Length; i++)
-            {
 
-                Console.WriteLine(foundRows[i][0]);
-                //dataTableResult.ImportRow(foundRows[i]);
-            }
-            //return dataTableResult;
+
+            //if (minValue.Split('/').Length <= 1) {
+
+                foreach (DataRow dr in foundRows)
+                {
+                    Console.WriteLine(dr.ItemArray[0]);
+                    dataTableResult.Rows.Add(dr.ItemArray);
+                }
+            //}
+           /* else {
+
+                string[] minDatet = minValue.Split('/');
+                //YEAR - MONTH - DAY
+                DateTime dateMin = new DateTime(Convert.ToInt32(minDatet[2]), Convert.ToInt32(minDatet[1]), Convert.ToInt32(minDatet[0]));
+
+                string[] maxDatet = maxValue.Split('/');
+                DateTime dateMax = new DateTime(Convert.ToInt32(maxDatet[2]), Convert.ToInt32(maxDatet[1]), Convert.ToInt32(maxDatet[0]));
+
+
+                foreach (DataRow dr in dtCopy.Rows)
+                {
+                    string[] date = Convert.ToString(dr.ItemArray[1]).Split('/');
+                    DateTime dateD = new DateTime(Convert.ToInt32(date[2]), Convert.ToInt32(date[1]), Convert.ToInt32(date[0]));
+
+                    Console.WriteLine(dateD.ToString());
+                    Console.WriteLine(dateMin.ToString());
+                    Console.WriteLine(dateMax.ToString());
+
+
+
+                    if ((dateD >= dateMin) && (dateD <= dateMax)) {
+
+                        Console.WriteLine(dr.ItemArray[0]);
+                        dataTableResult.Rows.Add(dr.ItemArray);
+                    }
+                }
+
+            }*/
+
+            Console.WriteLine(" -------------------- ENTró ----------");
+            return dataTableResult;
         }
 
         private string AssingClasificationToField(String nameField)
