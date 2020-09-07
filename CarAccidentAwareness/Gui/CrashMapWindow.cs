@@ -165,7 +165,7 @@ namespace CarAccidentAwareness
 
         private void DrawBarsChart(Dictionary<string, int> dictValuesChart)
         {
-            diagramBars.Titles.Add("Report Number of Transit Accidents since 2012 to 2020 in USA");
+            diagramBars.Titles.Add("Report Number of Transit Accidents since 2012 to 2020 in Maryland");
             
             var list = dictValuesChart.Keys.ToList();
             list.Sort();
@@ -179,7 +179,7 @@ namespace CarAccidentAwareness
 
         private void DrawPieChart(Dictionary<string, int> dictValuesChart)
         {
-            dragramPie.Titles.Add("Report Number of Transit Accidents per Type of Accidente since 2012 to 2020 in USA");
+            dragramPie.Titles.Add("Report Number of Transit Accidents per Type of Accidente since 2012 to 2020 in Maryland");
             dragramPie.Series["Series1"].IsValueShownAsLabel = true;
 
             foreach (KeyValuePair<string, int> item in dictValuesChart)
@@ -195,7 +195,7 @@ namespace CarAccidentAwareness
 
         private void DrawPointsChart(Dictionary<string, int> dictValuesChart)
         {
-            diagramPoints.Titles.Add("Report Number of Transit Accidents since 01-2020 to 07-2020 in USA");
+            diagramPoints.Titles.Add("Report Number of Transit Accidents since 01-2020 to 07-2020 in Maryland");
 
             var list = dictValuesChart.Keys.ToList();
             list.Sort();
